@@ -1,7 +1,5 @@
 package jp.leopanda.panelFrame.filedParts;
 
-import java.util.Map;
-
 import jp.leopanda.panelFrame.validate.ValidateBase;
 
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -9,13 +7,12 @@ import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.user.client.ui.ListBox;
 
 /**
- * リストボックス入力フィールドを作成するクラス
+ * リストボックス入力フィールドを作成するクラス リストの値はListElementインターフェースを実装したenumによって指定する。 具体的な実装方法はhtmlEditHelperを参照のこと。
  * 
  * @author LeoPanda
  *
  */
 public class ListBoxField extends FieldBase<ListBox> implements FieldCommon {
-  private Map<String, String> valueList; // 選択値のリストマップ
   private EventAction actionListener;
 
   public void addEventListener(EventAction actionListener) {
@@ -29,13 +26,13 @@ public class ListBoxField extends FieldBase<ListBox> implements FieldCommon {
    *          スタイル名
    * @param label
    *          ラベルに表示する文字列
-   * @param valueList
-   *          リストボックスに表示する選択リスト
    * @param validates
    *          バリデータの配列
+   * @param elements
+   *          選択値の配列
    */
   public ListBoxField(String styleName, String label, ValidateBase[] validates,
-      Map<String, String> valueList) {
+      ListElement[] elements) {
     super(styleName, label, validates, new ListBox());
     basicFieldClass.addChangeHandler(new ChangeHandler() {
       @Override
@@ -43,14 +40,14 @@ public class ListBoxField extends FieldBase<ListBox> implements FieldCommon {
         actionListener.onValueChange();
       }
     });
-    this.valueList = valueList;
-    setListBox(this.valueList);
+    setListBox(elements);
   }
 
   /**
    * クローン用コンストラクタ
    * 
-   * @param original クローン元オブジェクト
+   * @param original
+   *          クローン元オブジェクト
    */
   private ListBoxField(ListBoxField original) {
     super(original, new ListBox());
@@ -60,22 +57,30 @@ public class ListBoxField extends FieldBase<ListBox> implements FieldCommon {
         actionListener.onValueChange();
       }
     });
-    this.valueList = original.valueList;
-    this.valueList.remove(original.getFieldKey());// オリジナルで選択されている項目は除く
-    setListBox(valueList);
+    for (int i = 0; i < original.basicFieldClass.getItemCount(); i++) {
+      basicFieldClass.addItem(original.basicFieldClass.getItemText(i));
+    }
   }
 
   /**
    * リストボックスに選択リストをセットする
    */
-  public void setListBox(Map<String, String> valueList) {
-    for (Map.Entry<String, String> value : valueList.entrySet()) {
-      basicFieldClass.addItem(value.getKey(), value.getValue());
+  public void setListBox(ListElement[] elements) {
+    for (ListElement element : elements) {
+      basicFieldClass.addItem(element.getName());
     }
+  }
+
+  /**
+   * リストボックスの選択リストをクリアする
+   */
+  public void clear() {
+    basicFieldClass.clear();
   }
 
   /*
    * 選択された値を返す
+   * 
    * @see jp.leopanda.panelFrame.filedParts.FieldBase#getFieldValue()
    */
   @Override
@@ -84,14 +89,14 @@ public class ListBoxField extends FieldBase<ListBox> implements FieldCommon {
   }
 
   /**
-   * 選択されたキー値を返す
+   * 選択されたインデックス値を返す
    */
-  public String getFieldKey() {
-    return basicFieldClass.getItemText(basicFieldClass.getSelectedIndex());
+  public int getSelectedIndex() {
+    return basicFieldClass.getSelectedIndex();
   }
 
   /*
-   * 初期選択をキー値でセット
+   * 初期選択をセット
    * 
    * @see jp.leopanda.panelFrame.filedParts.FieldBase#setText(java.lang.String)
    */
@@ -112,11 +117,12 @@ public class ListBoxField extends FieldBase<ListBox> implements FieldCommon {
     return super.validate();
   }
 
-  /* clone this.
-   * @see jp.leopanda.panelFrame.filedParts.FieldBase#clone()
+  /* 
+   * 
    */
   @Override
   public ListBoxField clone() {
     return new ListBoxField(this);
   }
+
 }
