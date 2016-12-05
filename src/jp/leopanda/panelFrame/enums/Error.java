@@ -10,8 +10,11 @@ public enum Error {
   INTEGER("整数値を入力してください。"), 
   DATE("日付を入力してください。"), 
   REGEX("指定された入力パターンと一致しません。"), 
-  GROUP("フィールドのグループ内にエラーがあります。"), 
-  LEAST_ONE("いづれかを入力してください。");
+  GROUP("フィールドのグループ内にエラーがあります。"),
+  LEAST_ONE("いづれかを入力してください。"),
+  COMBINE("複合エラー"),
+  OTHER("その他のエラー"),
+  NOMESSAGE("");
 
   private String msg;
 

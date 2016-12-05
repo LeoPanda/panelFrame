@@ -16,11 +16,10 @@ import com.google.gwt.user.client.ui.Widget;
  * @author LeoPanda
  *
  */
-public class FieldGroup implements FieldCommon, Cloneable {
-  private List<FieldCommon> groupFieldList = new ArrayList<FieldCommon>(); // グループフィールドのコンテナ
-  private HorizontalPanel groupPanel = new HorizontalPanel(); // グループフィールドを囲うパネル
-  private String separator = ","; // 複数フィールド値のセパレータ
-  private GroupValidate[] validates = null; // Group Validateインスタンスの配列
+public class FieldGroup extends HorizontalPanel implements FieldCommon, Cloneable {
+  protected List<FieldCommon> groupFieldList = new ArrayList<FieldCommon>(); // グループフィールドのコンテナ
+  protected String separator = ","; // 複数フィールド値のセパレータ
+  protected GroupValidate[] validates = null; // Group Validateインスタンスの配列
 
   /**
    * コンストラクタ
@@ -35,15 +34,15 @@ public class FieldGroup implements FieldCommon, Cloneable {
    *          スタイル名
    */
   public FieldGroup(String style) {
-    this.groupPanel.addStyleName(style);
+    this.addStyleName(style);
   }
 
   /**
    * グループパネルにフィールドを追加する
    */
-  public void add(FieldCommon field) {
+  public void addField(FieldCommon field) {
     groupFieldList.add(field);
-    groupPanel.add((Widget) field);
+    this.add((Widget) field);
   }
 
   /**
@@ -52,7 +51,7 @@ public class FieldGroup implements FieldCommon, Cloneable {
   public FieldGroup clone() {
     FieldGroup fieldGroup = new FieldGroup();
     for (FieldCommon field : groupFieldList) {
-      fieldGroup.add((FieldCommon) field.clone());
+      fieldGroup.addField((FieldCommon) field.clone());
     }
     return fieldGroup;
   }
@@ -101,7 +100,7 @@ public class FieldGroup implements FieldCommon, Cloneable {
    * @param グループパネルオブジェクト
    */
   public CellPanel getGroupPanel() {
-    return groupPanel;
+    return this;
   }
 
   /**
@@ -137,9 +136,9 @@ public class FieldGroup implements FieldCommon, Cloneable {
   /**
    * グループパネルからフィールドを削除する
    */
-  public boolean remove(int index) {
+  public boolean removeField(int index) {
     groupFieldList.remove(index);
-    return groupPanel.remove(index);
+    return this.remove(index);
   }
 
   /**

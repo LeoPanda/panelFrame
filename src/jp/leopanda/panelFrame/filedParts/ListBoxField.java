@@ -7,7 +7,8 @@ import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.user.client.ui.ListBox;
 
 /**
- * リストボックス入力フィールドを作成するクラス リストの値はListElementインターフェースを実装したenumによって指定する。 具体的な実装方法はhtmlEditHelperを参照のこと。
+ * リストボックス入力フィールドを作成するクラス リストの
+ * 値はListElementインターフェースを実装したenumによって指定する。 具体的な実装方法はhtmlEditHelperを参照のこと。
  * 
  * @author LeoPanda
  *
