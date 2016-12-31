@@ -26,6 +26,7 @@
   <source path='panelParts'/>
   <source path='enums'/>
   <source path='validate'/>
+  <source path='cssResource'/>
 
   <!-- allow Super Dev Mode -->
   <add-linker name="xsiframe"/>

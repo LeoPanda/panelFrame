@@ -4,26 +4,29 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.RadioButton;
 
 /**
- * 単体RadioButton
- * RadioButtonFieldに埋め込んで使用される
+ * 単体RadioButton RadioButtonFieldに埋め込んで使用される
+ * 
  * @author LeoPanda
  *
  */
 public class RadioButtonCell extends FieldBase<RadioButton> implements FieldCommon {
 
-  protected RadioButtonCell(String styleName,String groupName){
-    super(styleName, "", null, new RadioButton(groupName));
+  protected RadioButtonCell(String groupName) {
+    super(new RadioButton(groupName));
   }
-  
-  public Boolean getValue(){
+
+  public Boolean getValue() {
     return basicFieldClass.getValue();
   }
-  public void addClickHandler(ClickHandler handler){
+
+  public void addClickHandler(ClickHandler handler) {
     this.basicFieldClass.addClickHandler(handler);
   }
-  public void setSelected(){
+
+  public void setSelected() {
     this.basicFieldClass.setValue(true);
   }
+
   @Override
   public void setText(String text) {
     this.basicFieldClass.setTitle(text);

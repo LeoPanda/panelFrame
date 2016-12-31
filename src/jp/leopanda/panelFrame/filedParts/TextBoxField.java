@@ -14,15 +14,13 @@ public class TextBoxField extends FieldBase<TextBox> implements FieldCommon {
   /**
    * コンストラクタ
    * 
-   * @param styleName
-   *          スタイル名
    * @param label
    *          ラベルに表示する文字列
    * @param validates
    *          バリデータの配列
    */
-  public TextBoxField(String styleName, String label, ValidateBase[] validates) {
-    super(styleName, label, validates, new TextBox());
+  public TextBoxField(String label, ValidateBase[] validates) {
+    super(label, validates, new TextBox());
   }
 
   /**

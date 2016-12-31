@@ -7,8 +7,8 @@ import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.user.client.ui.ListBox;
 
 /**
- * リストボックス入力フィールドを作成するクラス リストの
- * 値はListElementインターフェースを実装したenumによって指定する。 具体的な実装方法はhtmlEditHelperを参照のこと。
+ * リストボックス入力フィールドを作成するクラス リストの 値はListElementインターフェースを実装したenumによって指定する。
+ * 具体的な実装方法はhtmlEditHelperを参照のこと。
  * 
  * @author LeoPanda
  *
@@ -23,18 +23,12 @@ public class ListBoxField extends FieldBase<ListBox> implements FieldCommon {
   /**
    * コンストラクタ
    * 
-   * @param styleName
-   *          スタイル名
-   * @param label
-   *          ラベルに表示する文字列
-   * @param validates
-   *          バリデータの配列
-   * @param elements
-   *          選択値の配列
+   * @param label ラベルに表示する文字列
+   * @param validates バリデータの配列
+   * @param elements 選択値の配列
    */
-  public ListBoxField(String styleName, String label, ValidateBase[] validates,
-      ListElement[] elements) {
-    super(styleName, label, validates, new ListBox());
+  public ListBoxField(String label, ValidateBase[] validates, ListElement[] elements) {
+    super(label, validates, new ListBox());
     basicFieldClass.addChangeHandler(new ChangeHandler() {
       @Override
       public void onChange(ChangeEvent event) {
@@ -47,8 +41,7 @@ public class ListBoxField extends FieldBase<ListBox> implements FieldCommon {
   /**
    * クローン用コンストラクタ
    * 
-   * @param original
-   *          クローン元オブジェクト
+   * @param original クローン元オブジェクト
    */
   private ListBoxField(ListBoxField original) {
     super(original, new ListBox());

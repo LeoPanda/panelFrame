@@ -11,16 +11,14 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 
 /**
- * 入力フィールドを生成するクラスのベースとなる抽象クラス <<機能>> ・ラベルの配置 ・個別スタイル名のセット
+ * 入力フィールドを生成するクラスのベースとなる抽象クラス
  * 
  * @author LeoPanda
  *
  */
-public abstract class FieldBase<T extends FocusWidget> extends HorizontalPanel implements
-    FieldCommon, Cloneable {
-  private final String DEFAULT_STYLE = "FieldBase"; // デフォルトのCSSスタイル名
+public abstract class FieldBase<T extends FocusWidget> extends HorizontalPanel
+    implements FieldCommon, Cloneable {
   private Label label; // ラベル
-  private String styleName; // スタイル名
   private ValidateBase[] validates; // validateインスタンスの配列
   protected Error err = Error.NOTHING; // フィールドのエラー状態
   protected String errMsg = Error.NOTHING.getMsg(); // フィールドのエラーメッセージ
@@ -29,18 +27,30 @@ public abstract class FieldBase<T extends FocusWidget> extends HorizontalPanel i
   /**
    * コンストラクタ
    * 
-   * @param fieldAttr
-   *          各入力パネルで定義するフィールド属性のenum値
+   * @param label String 入力ラベル
+   * @param validates ValidateBase[] バリデータ配列
+   * @param basicFieldClass FocusWidget 入力フィールドのクラス
    */
-  protected FieldBase(String styleName, String label, ValidateBase[] validates, T basicFieldClass) {
-    this.styleName = styleName;
+  protected FieldBase(String label, ValidateBase[] validates, T basicFieldClass) {
     this.label = new Label(label);
+    this.label.addStyleName(Style.LABEL.getName());
     this.validates = validates;
     this.basicFieldClass = basicFieldClass;
-    setStyle(styleName);
     this.add(this.label);
     this.add(this.basicFieldClass);
     setRequierdStyle();
+  }
+
+  /**
+   * コンストラクタ（ラベル、バリデータ無し）
+   * 
+   * @param basicFieldClass FocusWidget 入力フィールドのクラス
+   */
+  protected FieldBase(T basicFieldClass) {
+    this.label = null;
+    this.validates = null;
+    this.basicFieldClass = basicFieldClass;
+    this.add(this.basicFieldClass);
   }
 
   /**
@@ -48,10 +58,10 @@ public abstract class FieldBase<T extends FocusWidget> extends HorizontalPanel i
    */
   protected FieldBase(FieldBase<T> original, T basicFieldClass) {
     this.label = new Label(original.label.getText());
-    this.styleName = new String(original.styleName);
     this.validates = original.validates;
     this.basicFieldClass = basicFieldClass;
-    setStyle(styleName);
+    addStyleName(original.basicFieldClass.getStyleName());
+    addLabelStyle(original.label.getStyleName());
     this.add(this.label);
     this.add(this.basicFieldClass);
     setRequierdStyle();
@@ -65,14 +75,22 @@ public abstract class FieldBase<T extends FocusWidget> extends HorizontalPanel i
     setRequierdStyle();
   }
 
-  /*
-   * スタイルの設定
+  /**
+   * ラベルのスタイルを設定する
+   * 
+   * @param style String スタイル名
    */
-  private void setStyle(String name) {
-    label.addStyleName(name);
-    this.addStyleName(DEFAULT_STYLE);
-    this.addStyleName(name);
-    basicFieldClass.addStyleName(name);
+  public void addLabelStyle(String style) {
+    label.addStyleName(style);
+  }
+
+  /**
+   * 入力フィールドのスタイルを設定する
+   * 
+   * @param style String スタイル名
+   */
+  public void addStyleName(String style) {
+    basicFieldClass.addStyleName(style);
   }
 
   /*
@@ -127,9 +145,9 @@ public abstract class FieldBase<T extends FocusWidget> extends HorizontalPanel i
     }
     for (Validate validate : this.validates) {
       if (validate.getError() == Error.REQUIRED) {
-        Label required = new Label("(必須)");
-        required.addStyleName(Style.REMARKS.getName());
-        this.add(required);
+        Label requiredLabel = new Label("(必須)");
+        requiredLabel.addStyleName(Style.REMARKS.getName());
+        this.add(requiredLabel);
       }
     }
   }

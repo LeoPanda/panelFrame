@@ -9,7 +9,6 @@ import com.google.gwt.user.client.ui.VerticalPanel;
  *
  */
 public abstract class PanelBase extends VerticalPanel {
-  private final String DEFAULT_STYLE = "PanelBase"; // デフォルトのCSSスタイル名
   private final int fieldMapStep = 100; // フィールドマップindexの刻み幅
   /*
    * 入力フィールドコレクションマップ
@@ -20,7 +19,6 @@ public abstract class PanelBase extends VerticalPanel {
    * デフォルトのコンストラクタ
    */
   protected PanelBase() {
-    this.addStyleName(DEFAULT_STYLE);
   }
 
   /*

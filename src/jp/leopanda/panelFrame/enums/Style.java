@@ -1,5 +1,8 @@
 package jp.leopanda.panelFrame.enums;
 
+
+import jp.leopanda.panelFrame.cssResource.StandardStyle;
+
 /**
  * 共通スタイル名
  * 
@@ -7,17 +10,15 @@ package jp.leopanda.panelFrame.enums;
  *
  */
 public enum Style {
-  WARNING("warning"), 
-  REMARKS("remarks"), 
-  REQUIRED("required"), 
-  GROUP_LABEL("gourplabel"), 
-  GROUP_FRAME("gourpframe"), 
-  DATE("date"), REGEX("regex"), 
-  NUMERIC("NUMERIC");
+  WARNING(StandardStyle.INSTANCE.style().warning()), 
+  REMARKS(StandardStyle.INSTANCE.style().remarks()), 
+  NUMERIC(StandardStyle.INSTANCE.style().numeric()),
+  LABEL(StandardStyle.INSTANCE.style().label());
 
   private String name;
 
   Style(String name) {
+    StandardStyle.INSTANCE.style().ensureInjected();
     this.name = name;
   }
 

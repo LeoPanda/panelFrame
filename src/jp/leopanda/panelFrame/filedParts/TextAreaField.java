@@ -14,15 +14,11 @@ public class TextAreaField extends FieldBase<TextArea> implements FieldCommon {
   /**
    * コンストラクタ
    * 
-   * @param styleName
-   *          スタイル名
-   * @param label
-   *          ラベルに表示する文字列
-   * @param validates
-   *          バリデータの配列
+   * @param label ラベルに表示する文字列
+   * @param validates バリデータの配列
    */
-  public TextAreaField(String styleName, String label, ValidateBase[] validates) {
-    super(styleName, label, validates, new TextArea());
+  public TextAreaField(String label, ValidateBase[] validates) {
+    super(label, validates, new TextArea());
   }
 
   /**
