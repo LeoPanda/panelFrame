@@ -1,6 +1,5 @@
 .numeric{
 	text-align:right;
-	width:35px;
 }
 .remarks{
 	text-align:left;
@@ -9,7 +8,6 @@
 	background-color:pink;
 }
 .label{
-	width: 200px;
 	text-align: right;
-	font: 14.5px "ƒƒCƒŠƒI", Meiryo, Verdana, Helvetica, "ƒqƒ‰ƒMƒmŠpƒS Pro W3", "Hiragino Kaku Gothic Pro", "‚l‚r ‚oƒSƒVƒbƒN", sans-serif;
+	font-family: "ƒƒCƒŠƒI", Meiryo, Verdana, Helvetica, "ƒqƒ‰ƒMƒmŠpƒS Pro W3", "Hiragino Kaku Gothic Pro", "‚l‚r ‚oƒSƒVƒbƒN", sans-serif;
 }

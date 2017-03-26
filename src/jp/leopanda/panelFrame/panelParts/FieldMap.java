@@ -6,7 +6,7 @@ import java.util.TreeMap;
 import jp.leopanda.panelFrame.filedParts.FieldCommon;
 
 /**
- * 入力パネルに搭載するフィールドを 　一括で内部処理するために使用するコレクションマップ
+ * 入力パネルに搭載するフィールドを 一括で内部処理するために使用するコレクションマップ
  *
  * @author LeoPanda
  *
@@ -50,7 +50,7 @@ public class FieldMap {
   /**
    * フィールドの挿入
    * 
-   * @param index フィールドマップの挿入位置 
+   * @param index フィールドマップの挿入位置
    * @param field 挿入するフィールド
    */
   public void insert(int index, FieldCommon field) {
@@ -82,6 +82,15 @@ public class FieldMap {
       }
     }
     return true;
+  }
+
+  /**
+   * すべてのフィールドを初期状態に戻す
+   */
+  public void resetFields() {
+    for (Map.Entry<Integer, FieldCommon> fieldSet : fieldMap.entrySet()) {
+      fieldSet.getValue().setText("");
+    }
   }
 
   /*
