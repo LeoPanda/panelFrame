@@ -20,6 +20,11 @@ public interface FieldCommon {
   void setText(String text);
 
   /*
+   * フィールドを初期状態にする
+   */
+  void reset();
+  
+  /*
    * エラーをセットする
    */
   void setErr(Error err, String errMsg);

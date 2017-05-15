@@ -175,6 +175,7 @@ public class RadioButtonField extends FieldGroup implements FieldCommon, Cloneab
   /**
    * クローンの作成
    */
+  @Override
   public RadioButtonField clone() {
     return new RadioButtonField(this);
   }

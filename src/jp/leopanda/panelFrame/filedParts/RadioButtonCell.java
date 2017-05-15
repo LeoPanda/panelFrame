@@ -36,6 +36,13 @@ public class RadioButtonCell extends FieldBase<RadioButton> implements FieldComm
   public boolean validate() {
     return true;
   }
+  /* 
+   * 値をリセットする
+   */
+  @Override
+  public void reset() {
+    this.basicFieldClass.setValue(false);   
+  }
 
   /**
    * 常にnullが返されます
@@ -54,5 +61,6 @@ public class RadioButtonCell extends FieldBase<RadioButton> implements FieldComm
   protected String getFieldValue() {
     return null;
   }
+
 
 }

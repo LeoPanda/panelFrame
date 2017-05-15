@@ -27,9 +27,12 @@ public abstract class FieldBase<T extends FocusWidget> extends HorizontalPanel
   /**
    * コンストラクタ
    * 
-   * @param label String 入力ラベル
-   * @param validates ValidateBase[] バリデータ配列
-   * @param basicFieldClass FocusWidget 入力フィールドのクラス
+   * @param label
+   *          String 入力ラベル
+   * @param validates
+   *          ValidateBase[] バリデータ配列
+   * @param basicFieldClass
+   *          FocusWidget 入力フィールドのクラス
    */
   protected FieldBase(String label, ValidateBase[] validates, T basicFieldClass) {
     this.label = new Label(label);
@@ -44,7 +47,8 @@ public abstract class FieldBase<T extends FocusWidget> extends HorizontalPanel
   /**
    * コンストラクタ（ラベル、バリデータ無し）
    * 
-   * @param basicFieldClass FocusWidget 入力フィールドのクラス
+   * @param basicFieldClass
+   *          FocusWidget 入力フィールドのクラス
    */
   protected FieldBase(T basicFieldClass) {
     this.label = null;
@@ -78,7 +82,8 @@ public abstract class FieldBase<T extends FocusWidget> extends HorizontalPanel
   /**
    * ラベルのスタイルを設定する
    * 
-   * @param style String スタイル名
+   * @param style
+   *          String スタイル名
    */
   public void addLabelStyle(String style) {
     label.addStyleName(style);
@@ -87,7 +92,8 @@ public abstract class FieldBase<T extends FocusWidget> extends HorizontalPanel
   /**
    * 入力フィールドのスタイルを設定する
    * 
-   * @param style String スタイル名
+   * @param style
+   *          String スタイル名
    */
   public void addStyleName(String style) {
     basicFieldClass.addStyleName(style);
@@ -113,6 +119,15 @@ public abstract class FieldBase<T extends FocusWidget> extends HorizontalPanel
    */
   public Error getErr() {
     return err;
+  }
+
+  /*
+   * 入力フィールドを返す
+   * 
+   * @return
+   */
+  public T getBasicField() {
+    return basicFieldClass;
   }
 
   /*

@@ -51,4 +51,12 @@ public class TextAreaField extends FieldBase<TextArea> implements FieldCommon {
   public FieldBase<TextArea> clone() {
     return new TextAreaField(this);
   }
+
+  /* 
+   * 値のリセット
+   */
+  @Override
+  public void reset() {
+    basicFieldClass.setText("");
+  }
 }

@@ -120,11 +120,19 @@ public class ListBoxField extends FieldBase<ListBox> implements FieldCommon {
   }
 
   /* 
-   * 
+   * クローン
    */
   @Override
   public ListBoxField clone() {
     return new ListBoxField(this);
+  }
+
+  /* 
+   * フィールドを初期状態にする
+   */
+  @Override
+  public void reset() {
+    basicFieldClass.setSelectedIndex(0);
   }
 
 }

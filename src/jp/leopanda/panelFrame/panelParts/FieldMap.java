@@ -89,7 +89,7 @@ public class FieldMap {
    */
   public void resetFields() {
     for (Map.Entry<Integer, FieldCommon> fieldSet : fieldMap.entrySet()) {
-      fieldSet.getValue().setText("");
+      fieldSet.getValue().reset();
     }
   }
 

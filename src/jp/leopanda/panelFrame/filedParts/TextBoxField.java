@@ -61,4 +61,12 @@ public class TextBoxField extends FieldBase<TextBox> implements FieldCommon {
   public TextBoxField clone() {
     return new TextBoxField(this);
   }
+
+  /* 
+   * 
+   */
+  @Override
+  public void reset() {
+    basicFieldClass.setText(null);
+  }
 }

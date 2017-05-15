@@ -48,6 +48,7 @@ public class FieldGroup extends HorizontalPanel implements FieldCommon, Cloneabl
   /**
    * グループのクローンを作成する
    */
+  @Override
   public FieldGroup clone() {
     FieldGroup fieldGroup = new FieldGroup();
     for (FieldCommon field : groupFieldList) {
@@ -194,5 +195,16 @@ public class FieldGroup extends HorizontalPanel implements FieldCommon, Cloneabl
       popError();
     }
     return validate;
+  }
+
+  /* 
+   *　フィールドを初期状態にもどす 
+   */
+  @Override
+  public void reset() {
+    for (FieldCommon field : groupFieldList) {
+      field.reset();
+    }
+
   }
 }
